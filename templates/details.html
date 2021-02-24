@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block title %}{{ user.first }} {{ user.last }}{%
+endblock %} {% block content %}
+
+<div class="row">
+  {% if user.image_url %}
+  <div class="card" style="width: 18rem">
+    <img
+      src="{{ user.image_url }}"
+      class="card-img-top"
+      alt="{{ user.first }}_{{ user.last }}"
+    />
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{user.first}} {{user.last}}</h5>
+      <p class="card-text">
+        My friends just call me {{ user.first }}. If you'd like to see the rest
+        of my family,
+        <a
+          href="/users/family/{{ user.last }}"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Click here to see the rest of the family"
+          >click here</a
+        >
+      </p>
+      <a href="/users" class="btn btn-primary">Back to list</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block title %} Add User {% endblock %}
+
+{% block content %}
+
+<form action='/users/add' method="POST">
+  <div class="form-group">
+    <label for="first">First Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="first"
+      name="first"
+      placeholder="Enter first name"
+    />
+    <small class="form-text text-muted">
+        Even a nickname will do.
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="last">Last Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="last"
+      name="last"
+      placeholder="Enter last name"
+    />
+  </div>
+  <label for="image">Profile Image</label>
+  <input
+    type="text"
+    class="form-control"
+    id="image_url"
+    name="image_url"
+    placeholder="Enter URL for your avatar image"
+  />
+  <small class="form-text text-muted">
+      Don't worry...we have a sweet avatar for you if you do not enter this
+    </small>
+
+  <button class="btn btn-primary">Submit</button>
+</div>
+</form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block title %}Blogly{% endblock %} {% block
+content%} {% if heading %}
+
+<div class="container-fluid">
+  <h1>{{ heading }}</h1>
+</div>
+
+{% endif %}
+
+<div class="list-group">
+  {% for user in users %}
+
+  <div class="card mb-3" style="max-width: 800px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <a href="/users/{{user.id}}">
+          <img
+            src="{{user.image_url}}"
+            alt="{{user.first}}_{{user.last}}"
+            width="280rem"
+            style="
+              overflow: hidden;
+              margin-left: auto;
+              margin-right: auto;
+              display: block;
+            "
+          />
+        </a>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{user.first}} {{user.last}}</h5>
+          <p class="card-text">Part of the {{user.last}} family.</p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 1 million years ago</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
