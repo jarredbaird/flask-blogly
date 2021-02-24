@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %} Edit User {% endblock %}
+
+{% block content %}
+<h1>Edit {{user.first}} {{user.last}}</h1>
+
+<form action='/users/change/{{user.id}}' method="POST">
+  <div class="form-group">
+    <label for="first">First Name  <small class="text-muted">Current value: {{user.first}}</small></label>
+    <input
+      type="text"
+      class="form-control"
+      id="first"
+      name="first"
+      placeholder="Enter first name"
+    />
+    <small class="form-text text-muted">
+        Even a nickname will do.
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="last">Last Name  <small class="text-muted">Current value: {{user.last}}</small></label>
+    <input
+      type="text"
+      class="form-control"
+      id="last"
+      name="last"
+      placeholder="Enter last name"
+    />
+  </div>
+  <label for="image">Profile Image  <small class="text-muted">Current value: {{user.image_url[0:20]}}...</small></label>
+  <input
+    type="text"
+    class="form-control"
+    id="image_url"
+    name="image_url"
+    placeholder="Enter URL for your avatar image"
+  />
+  <small class="form-text text-muted">
+      Don't worry...we have a sweet avatar for you if you do not enter this
+    </small>
+
+    <a href="/users/{{ user.id }}" class="btn btn-warning">
+        Cancel
+    </a>
+  <button class="btn btn-primary">Submit</button>
+</div>
+</form>
+{% endblock %}

@@ -36,6 +36,36 @@ def display_family(last):
 @app.route('/users/new')
 def show_add_user_form():
     return render_template("form.html")
+
+@app.route('/users/edit/<int:id>')
+def show_edit_user_form(id):
+    user = User.query.get(id)
+    return render_template("edit.html", user=user)
+
+@app.route('/users/change/<int:id>', methods=["POST"])
+def change_user(id):
+    changed_user = User.query.get(id)
+    first = request.form['first']
+    if first:
+        changed_user.first = first
+    last = request.form['last']
+    if last:
+        changed_user.last = last
+    image_url = request.form["image_url"]
+    if image_url:
+        changed_user.image_url = image_url
+
+    db.session.add(changed_user)
+    db.session.commit()
+
+    return redirect(f'/users/{changed_user.id}')
+
+@app.route('/users/delete/<int:id>', methods=["POST"])
+def delete_user(id):
+    deleted_user = User.query.filter_by(id=id).delete()
+    db.session.commit()
+
+    return redirect('/users')
     
 @app.route('/users/add', methods=["POST"])
 def add_user():

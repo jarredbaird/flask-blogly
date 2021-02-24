@@ -3,7 +3,7 @@ endblock %} {% block content %}
 
 <div class="row">
   {% if user.image_url %}
-  <div class="card" style="width: 18rem">
+  <div class="card" style="width: 25rem">
     <img
       src="{{ user.image_url }}"
       class="card-img-top"
@@ -23,7 +23,27 @@ endblock %} {% block content %}
           >click here</a
         >
       </p>
-      <a href="/users" class="btn btn-primary">Back to list</a>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <form>
+          <button
+            formaction="/users/edit/{{ user.id }}"
+            class="btn btn-warning"
+            formmethod="GET"
+          >
+            Edit
+          </button>
+          <button
+            formaction="/users/delete/{{ user.id }}"
+            class="btn btn-danger"
+            formmethod="POST"
+          >
+            Delete
+          </button>
+        </form>
+      </div>
+      <a href="/users" class="btn btn-primary" style="margin: 5px"
+        >Back to list</a
+      >
     </div>
   </div>
 </div>
